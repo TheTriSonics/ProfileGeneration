@@ -60,5 +60,5 @@ Use the python script
 `
 python profile.py filename.csv
 `
-
+The resulting file `filename.profile.csv` contains the profile.
 
