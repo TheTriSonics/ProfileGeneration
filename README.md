@@ -51,7 +51,6 @@ for that leg expressed as a fraction of `vmax`.
 ```
 0, 0.8, 0.8
 0.8, 0.8, 0.8
-0.8, 0.8, 0.8
 0.8, 0.8, 0
 ```
 
