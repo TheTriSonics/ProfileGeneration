@@ -369,6 +369,8 @@ readfile = sys.argv[1]
 print "Reading", readfile
 input = open(readfile)
 lines = input.readlines()
+input.close()
+
 K = []
 commands = []
 emptycmd = " "
@@ -382,19 +384,31 @@ for line in lines:
         commands.append(emptycmd)
     else:
         commands.append(splitline[2])
-    
+
+velocityfile = readfile[:-3] + "velocities.csv"
+input = open(velocityfile)
+lines = input.readlines()
+velocities = []
+for line in lines:
+    line = line.rstrip()
+    splitline = line.split(",")
+    for i in range(3):
+        splitline[i] = float(splitline[i]) * vmax
+    velocities.append(splitline)
+input.close()
+
+if len(K) - len(velocities) != 1:
+    print "The number of velocities is not correct"
+    sys.exit(1)
+
+'''    
 defaultVelocities = True #Do you want to use the default velocity list
 if defaultVelocities:
     velocities = [[0,speedfactor*vmax,speedfactor*vmax]]
     for x in range(0,int(len(K))-3):
         velocities.append([speedfactor*vmax, speedfactor*vmax, speedfactor*vmax])
     velocities.append([speedfactor*vmax, speedfactor*vmax, 0])
-    
-'''velocities = [[0, speedfactor*vmax, speedfactor*vmax],
-              [speedfactor*vmax, speedfactor*vmax, speedfactor*vmax],
-              [speedfactor*vmax, speedfactor*vmax, speedfactor*vmax],
-              [speedfactor*vmax, speedfactor*vmax, speedfactor*vmax],
-              [speedfactor*vmax, speedfactor*vmax, 0]]'''
+'''    
 
 beziers = buildtrajectory(K)
 left, right, heading = buildprofile(beziers, commands, velocities, 25)
