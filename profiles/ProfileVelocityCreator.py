@@ -7,6 +7,10 @@ csvPath = raw_input("Please specify the waypoint file: ")
 if "\\" in csvPath:
     print("Waypoint file needs to be in loal folder")
     time.sleep(2)
+    raise ValueError("FAILED\nWaypoint file needs to be in loal folder")
+elif ".csv" not in csvPath:
+    print("FAILED\n.csv not in name")
+    time.sleep(2)
     raise ValueError("Waypoint file needs to be in loal folder")
 csvPath = "\\".join([dir_path,csvPath])
 csvFolder = csvPath.rsplit("\\",1)[0]
@@ -29,3 +33,6 @@ with open(csvFolder+"\\%s.velocities.csv"%csvFile,"w") as file:
     velocities = ', '.join(str(x) for x in velocities)
     velocities = (velocities[1:-1]).split("], [")
     file.write("\n".join(velocities))
+print("SUCCESS")
+time.sleep(1)
+
