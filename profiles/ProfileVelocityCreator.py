@@ -5,13 +5,13 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 speed = input("Please specify a base speed: ")
 csvPath = raw_input("Please specify the waypoint file: ")
 if "\\" in csvPath:
-    print("Waypoint file needs to be in loal folder")
+    print("Waypoint file needs to be in local folder")
     time.sleep(2)
-    raise ValueError("FAILED\nWaypoint file needs to be in loal folder")
+    raise ValueError("FAILED\nWaypoint file needs to be in local folder")
 elif ".csv" not in csvPath:
     print("FAILED\n.csv not in name")
     time.sleep(2)
-    raise ValueError("Waypoint file needs to be in loal folder")
+    raise ValueError(".csv not in name")
 csvPath = "\\".join([dir_path,csvPath])
 csvFolder = csvPath.rsplit("\\",1)[0]
 csvFile = csvPath.rsplit("\\",1)[1]
