@@ -32,7 +32,7 @@ with open(profile,"r") as profileFile:
         index = profileArray.index(x)
         profileArray[index] = map(float,x.split(","))
         profileArray[index][1] *= -1
-        print (int(side)==2)
+        print (int(side)==0)
         if int(side) == 0:
             profileArray[index][1] -= TopToBottom
         elif int(side) == 2:
