@@ -324,6 +324,7 @@ def outputprofile(filename, left, right, heading, commandinsert):
 
 #fps = 8.0         ## feet/sec (stronghold)
 fps = 12.0         ## steamworks
+fps = 8.4
 vmax = fps * 12    ## inches/sec
 amax = vmax * 1.0  ## inches/sec/sec (reaches vmax in 1/1th seconds)
 jmax = amax * 10.0 ## inches/sec/sec (reaches amax in 1/10th seconds)
@@ -393,7 +394,7 @@ for line in lines:
     line = line.rstrip()
     splitline = line.split(",")
     for i in range(3):
-        splitline[i] = float(splitline[i]) * vmax
+        splitline[i] = float(splitline[i]) * vmax * 12.0/float(fps)
     velocities.append(splitline)
 input.close()
 
@@ -410,8 +411,10 @@ if defaultVelocities:
     velocities.append([speedfactor*vmax, speedfactor*vmax, 0])
 '''    
 
+wheelbase = 24
 beziers = buildtrajectory(K)
-left, right, heading = buildprofile(beziers, commands, velocities, 25)
+left, right, heading = buildprofile(beziers, commands, velocities,
+                                    wheelbase)
 
 left[-1][1] = 0.0
 right[-1][1] = 0.0
