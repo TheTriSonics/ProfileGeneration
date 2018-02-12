@@ -233,6 +233,7 @@ public class PlanTrajectory extends FigurePanel implements Mover {
 
 	if (state == MOVE) {
 	    if (m instanceof Robot) {
+		System.out.println(y);
 		if (y > 295 || y < 55) return;
 		((Robot) m).setPoint(0,y);
 		knotPoints.get(0).setPoint(Robot.width/2.0,
